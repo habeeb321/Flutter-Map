@@ -1,47 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_maps/controller/map_provider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
-const LatLng currentLocation = LatLng(25.1193, 55.3773);
-
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  late GoogleMapController _mapController;
-  final Map<String, Marker> _markers = {};
-
-  @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<MapProvider>(context, listen: false);
     return Scaffold(
-      body: GoogleMap(
-        initialCameraPosition: const CameraPosition(
-          target: currentLocation,
-          zoom: 14,
-        ),
-        onMapCreated: (controller) {
-          _mapController = controller;
-          addMarker('test', currentLocation);
+      body: Consumer(
+        builder: (context, value, child) {
+          return GoogleMap(
+            initialCameraPosition: CameraPosition(
+              target: provider.currentLocation,
+              zoom: 14,
+            ),
+            onMapCreated: (controller) {
+              provider.uMapController = controller;
+              provider.addMarker('test', provider.currentLocation);
+            },
+            markers: provider.uMarkers.values.toSet(),
+          );
         },
-        markers: _markers.values.toSet(),
       ),
     );
-  }
-
-  addMarker(String id, LatLng location) {
-    var marker = Marker(
-      markerId: MarkerId(id),
-      position: location,
-      infoWindow: const InfoWindow(
-        title: 'Title of place',
-        snippet: 'Some description of the place',
-      ),
-    );
-
-    _markers[id] = marker;
-    setState(() {});
   }
 }
