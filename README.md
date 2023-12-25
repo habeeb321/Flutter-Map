@@ -1,16 +1,28 @@
-# flutter_maps
+# Flutter Map
 
-A new Flutter project.
+## Overview
+
+Flutter Map is a project that showcases the integration of map functionality into a Flutter application. This project aims to demonstrate how to use maps and handle location-related features within a Flutter app.
+
+## Features
+
+- Displaying maps with different types of layers
+- Handling user location and markers on the map
+
+## Key Tools
+
+- Flutter
+- Flutter Map package
+- Location package
+
+## Project Structure
+
+- `lib/`: Contains the main Flutter application code
+- `assets/`: Include any necessary assets such as images or fonts
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. Clone the repository:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+git clone https://github.com/habeeb321/Flutter-Map.git
